@@ -1,0 +1,488 @@
+*{
+    padding:0;
+    border:0;
+    margin:0;
+    font-family: 'Montserrat', sans-seriff;
+}
+
+/*cabecera*/
+header {
+    grid-area: cabecera;
+    display:grid;
+    grid-template-rows: auto auto;
+}
+
+.header-logo {
+    text-align: center;
+    padding-top:50px;
+    padding-bottom:25px;
+    /*padding-right:25px;*/
+}
+
+.header-logo img{
+    width: 1000px;
+}
+
+.header-menu ul{
+    display:grid;
+    grid-template-columns: 6fr 2fr 2fr 2fr 2fr 2fr 6fr;
+    list-style: none;
+    text-align: center;
+    /*padding-top: 100px;*/
+}
+
+.header-menu ul a{
+    color:rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+/*footer*/
+footer{
+    grid-area: pie;
+    display:grid;
+    grid-template-rows: 2fr 1fr;
+}
+
+.footer-logo{
+    text-align: center;
+    padding-top: 30px;
+}
+
+.footer-logo img{
+    width: 500px;
+}
+
+.footer-enlaces{
+    text-align:center;
+    padding-bottom: 30px;
+}
+
+.footer-enlaces img {
+    width:20px;
+}
+
+/*Página Web Index*/
+#index {
+    background-color: #e7dbc3;
+    display:grid;
+    grid-template-areas:
+        "cabecera"
+        "indexmain"
+        "pie";
+    grid-template-rows: auto auto auto;
+}
+
+/*index-main*/
+#index main {
+    grid-area:indexmain;
+    display:grid;
+    grid-template-areas:
+        "aside1 cursos aside2";
+    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-rows: auto;
+}
+
+#index h1 a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+#index h2 a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+#index p {
+    line-height:20px;
+    text-align: justify;
+}
+
+/*index-aside1*/
+.index-aside1 {
+    grid-area: aside1;
+}
+
+/*index-aside2*/
+.index-aside2{
+    grid-area: aside2;
+}
+
+/*index-cursos*/
+.index-cursos{
+    grid-area: cursos;
+    color: rgb(0, 0, 0);
+    display: grid;
+    grid-template-columns:1fr 8fr;
+    padding:25px;
+    border: 5px solid white;
+}
+
+.index.cursos.layout {
+    display:grid;
+    grid-template-rows: auto auto;
+}
+
+.index-cursos-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.index-cursos-content img{
+    width: 160px;
+    margin: 20px;
+    box-shadow: 3px 3px 10px gray;
+    border-radius:10px;
+}
+
+.index-cursos-layout .vermas {
+    text-align: end;
+    padding-right: 20px;
+}
+
+.index-cursos-layout .vermas a{
+    padding-top: 20px;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+}
+
+/*iPhone14 vertical viewport*/
+@media (max-width: 390px) {
+    /*cabecera*/
+    header {
+        grid-template-columns: 1fr;
+        grid-template-rows:auto auto;
+    }
+
+    .header-logo {
+        text-align: center;
+        padding-bottom:0px;
+        padding-right:0px;
+    }
+    
+    .header-logo img{
+        width: 200px;
+    }
+
+    .header-menu ul{
+        grid-template-columns: 2fr 2fr 2fr 3fr 2fr;
+        padding-top: 30px;
+        padding-left:10px;
+        padding-right:30px;
+        padding-bottom: 20px;
+    }
+
+    .header-menu ul a{
+        font-size: 24px;
+    }
+    
+    /*footer*/
+    footer{
+        grid-template-columns:1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .footer-logo img{
+        width:220px;
+        padding-top: 30px;
+    }
+
+    .footer-enlaces img{
+        width: 40px;
+        padding-top:21px;
+    }
+
+    /*Página Web Index*/
+
+    /*index-main*/
+    #index main {
+        display:grid;
+        grid-template-areas:
+            "enlaces"
+            "blog"
+            "juegos"
+            "aside1"
+            "aside2"
+            "miembros"
+            "contacto";
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat (7, auto);
+    }
+
+    #index p{
+        line-height:30px;
+    }
+
+    #index h2{
+        padding-bottom: 15px;
+    }
+
+    #index .vermas{
+        padding-top:20px;
+        padding-bottom:20px;
+    }
+
+    #index .vermas a{
+        font-size:25px;
+        padding-top:200px;
+        padding-bottom:20px;
+    }
+
+    /*index-enlaces*/
+    .index-enlaces{
+        grid-template-rows:auto auto;
+    }
+
+    .index-enlaces a{
+        font-size:16px;
+    }
+
+    .index-enlaces1 {
+        padding-top:30px;
+    }
+    
+    .index-enlaces2 {
+        padding-bottom:30px;
+    }
+
+    /*index-blog*/
+    .index-blog {
+        grid-template-columns:1fr;
+        grid-template-rows:auto auto;
+    }
+    
+    .index-blog h1 {
+        font-size: 36px;
+    }
+
+    .index-blog-content h3{
+        font-size:30px;
+        padding-top:25px;
+        padding-bottom:25px;
+    }
+
+    .index-blog-content p{
+        font-size:24px;
+    }
+
+    /*index-juegos*/
+    .index-juegos{
+        grid-template-columns:1fr;
+        grid-template-rows:auto auto;
+    }
+
+    .index-juegos h2{
+        font-size:36px;
+    }
+
+    .index-juegos-content{
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
+    }
+
+    .index-juegos-content img{
+        width: 240px;
+    }
+
+    /*index-miembros*/
+    .index-miembros{
+        grid-template-columns:auto;
+        grid-template-rows: auto auto auto;
+    }
+
+    .index-miembros h2{
+        font-size: 36px;
+    }
+    .index-miembros a{
+        text-align: center;
+    }
+
+    .index-miembros img{
+        width: 210px;
+    }
+
+    .index-miembros p{
+        Font-size: 24px;
+    }
+
+    /*index-contacto*/
+    .index-contacto{
+        grid-template-columns:1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .index-contacto h2{
+        font-size:36px;
+    }
+
+    .index-contacto p{
+        font-size: 26px;
+    }
+}
+
+/* iPad Pro vertical viewport */
+@media (min-width: 390px) and (max-width: 1024px) {
+    /*Everything en index*/
+    #index h1 {
+        font-size:46px;
+        padding-top:10px;
+        padding: 25px;
+    }
+    
+    #index h2 {
+        font-size:46px;
+        padding-top:10px;
+        padding: 25px;
+    }
+    
+    #index h3 {
+        font-size:38px;
+        padding-top:10px;
+        padding-left:25px;
+    }
+    
+    #index p{
+        font-size:32px;
+        text-align: justify;
+        padding: 25px;
+        line-height:45px;
+    }
+
+    #index .vermas{
+        padding-top:20px;
+        padding-bottom:20px;
+        padding-right:50px;
+    }
+
+    #index .vermas a{
+        font-size:32px;
+        padding-top:200px;
+        padding-bottom:20px;
+    }
+
+    /*cabecera*/
+    .header-logo {
+        text-align: center;
+        padding-top:50px;
+        padding-bottom:50px;
+        padding-left:50px;
+    }
+    
+    .header-logo img{
+        width: 280px;
+    }
+
+    .header-menu ul{
+        grid-template-columns: 1fr 2fr 2fr 3fr 2fr;
+        padding-top: 160px;
+        padding-left:10px;
+        padding-right:50px;
+        padding-bottom: 0px;
+    }
+
+    .header-menu ul a{
+        font-size: 28px;
+    }
+    
+    /*footer*/
+    footer{
+        grid-template-columns:1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .footer-logo img{
+        width:220px;
+        padding-top: 30px;
+    }
+
+    .footer-enlaces img{
+        width: 40px;
+        padding-top:21px;
+    }
+
+    /*index-main*/
+    #index main {
+        grid-template-areas:
+            "enlaces"
+            "blog"
+            "aside1"
+            "juegos"
+            "aside2"
+            "miembros"
+            "contacto";
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat (7, auto);
+    }
+
+    /*index-enlaces*/
+    .index-enlaces{
+        grid-template-rows:auto auto;
+    }
+
+    .index-enlaces a{
+        font-size:25px;
+        padding-left:15px;
+        padding-bottom:15px;
+    }
+
+    .index-enlaces img {
+        width:35px;
+        padding-right:5px;
+    }
+
+    .index-enlaces1 {
+        padding-top:30px;
+    }
+    
+    .index-enlaces2 {
+        padding-bottom:30px;
+    }
+
+    /*index-blog*/
+    .index-blog {
+        grid-template-columns:1fr;
+        grid-template-rows:auto auto;
+    }
+    
+    .index-blog-content1 {
+        padding-right:0px;
+    }
+
+    /*index-juegos*/
+    .index-juegos{
+        grid-template-columns:1fr;
+        grid-template-rows:auto auto;
+    }
+
+    .index-juegos-content{
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
+        text-align:center;
+    }
+
+    .index-juegos-content img{
+        width: 380px;
+    }
+
+    /*index-miembros*/
+    .index-miembros{
+        grid-template-columns:auto;
+        grid-template-rows: auto auto auto;
+    }
+
+    .index-miembros a{
+        text-align: center;
+    }
+
+    .index-miembros img{
+        width: 360px;
+    }
+
+    /*index-contacto*/
+    .index-contacto{
+        grid-template-columns:1fr;
+        grid-template-rows: auto auto;
+    }
+} 
