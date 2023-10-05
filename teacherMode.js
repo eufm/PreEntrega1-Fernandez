@@ -1,0 +1,1 @@
+let btnToggle = document.getElementById("btnToggle")

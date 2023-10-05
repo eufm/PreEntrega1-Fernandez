@@ -1,20 +1,41 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Learning Reference | Your Way of Building Knowledge</title>
     <meta name="description" content="Discover all about the language you want to learn.">
-    <meta name="keywords" content="videojuegos, análisis, investigación, singleplayer, ensayo ">
+    <meta name="keywords" content="language, reference, dictionary, courses, learning, teachers">
+    <!--ICON-->
 	<link rel="shortcut icon" href="./img/favicon.png" type="iage/x-icon">
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--CSS-->
 	<link rel="stylesheet" href="./CSS/style.css">
+    <!--Fonts-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"/>
 </head>
 <body id="index">
     <!--Encabezado-->
     <header>
+        <!--Navbar Above-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto mx-1">
+                        <button id="btnToggle" class="btn btn-success mx-3">Teacher</button>  
+                    </ul>
+                    <ul style="list-style: none;"className="navbar-nav me-auto">  
+                        <li className="nav-item " >
+                            <a id="botonCarrito" data-bs-toggle="modal" data-bs-target="#idModalCarrito" class="btn btn-secondary"><i class="fas fa-shopping-cart fa-1x"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+        </nav>
         <!--Logo-->
         <div class="header-logo">
             <a href="./index.html" target="_self"><img src="./img/logo.png" alt="logo"></a>
@@ -26,6 +47,7 @@
                 <li><a href="./index.html" target="_self">Home</a></li>
                 <li><a href="./pages/blog.html" target="_self">Dictionary</a> </a></li>
                 <li><a href="./pages/juegos.html" target="_self">Courses</a></li>
+                <li><a href="./pages/miembros.html" target="_self">Tools</a></li>
                 <li><a href="./pages/miembros.html" target="_self">Teachers</a></li>
                 <li><a href="./pages/contacto.html" target="_self">Contact</a></li>
                 <li><a></a></li>
@@ -35,35 +57,55 @@
 
     <!--Contenido-->
     <main>
-        <!--Banner Izquierdo-->
-        <aside class="asideizq">
-            <a href="./pages/juegos.html" target="_self"></a>
-        </aside>
-
-        <!--Banner Derecho-->
-        <aside class="asideder">
-            <a href="./pages/juegos.html" target="_self"></a>
-        </aside>
-
-        <!--Cursos-->
-        <section class="index-cursos">
-            <h2><a href="./pages/cursos.html" target="_self">CURSOS</a></h2>
-            <div class="index-cursos-layout">
-                <div class="index-juegos-content">
-                    <a href="./pages/juegoscallisto.html" target="_self">
-                    <img src="./img/callisto-thumb.jpg" alt="Callisto Protocol"></a>
-
-                    <a href="./pages/juegosforspoken.html" target="_self">
-                    <img src="./img/forspoken-thumb.jpg" alt="Forspoken"></a>
-
-                    <a href="..." target="_self">
-                    <img src="./img/hifi-thumb.jpg" alt="HiFi Rush"></a>
-
-                    <a href="..." target="_self">
-                    <img src="./img/deadspace-thumb.jpg" alt="Dead Space"></a>
+        <!--Diccionario-->
+        <section class="index-dictionary">
+            <h2><a href="./pages/diccionario.html" target="_self">DICTIONARY</a></h2>
+            
+            <div class="container">
+                <div class="search-box">
+                    <input type="text"placehoder="Type the word here..." id="inp-word">
+                    <button onclic="search()" class="search-btn" id="search-btn">Search</button>
                 </div>
-                <div class="vermas">
-                        <a href="./pages/esp_juegos.html" target="_self">Ver más cursos</a>
+
+                <div id="result" class="result"></div>
+            </div>
+        </section>
+
+        <!--Tools-->
+        <section class="index-tools">
+            <h2><a href="./pages/tools.html" target="_self">TOOLS</a></h2>
+
+            <textarea id="vocabulario" rows="10" cols="50"></textarea>
+            <button onclick="iniciarPractica()">Practicar</button>
+    
+            <div id="practica" style="display:none;">
+                <h1 id="palabraActual"></h1>
+                <input type="text" id="traduccionInput">
+                <button onclick="verificarTraduccion()">Verificar</button>
+                <p id="feedback"></p>
+            </div>
+        </section>
+
+        <!--Courses-->
+        <section class="index-courses">
+            <h2><a href="./pages/courses.html" target="_self">COURSES</a></h2>
+            <div class="index-courses-layout">
+                <div class="filters">
+                    <form id=results class="d-flex mx-3">
+                        <input id="searcher"class="form-control me-2 " placeholder="Qué estas buscando?" aria-label="Search">
+                    </form>
+                    <select id="selectOrder" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option selected>Ordenar por:</option>
+                        <option value="1">Mayor a menor</option>
+                        <option value="2">Menor a mayor</option>
+                        <option value="3">Alfabeticamente</option>
+                    </select>
+                </div>
+                <div id="index-courses-content">
+
+                </div>
+                <div class="seemore">
+                        <a href="./pages/esp_juegos.html" target="_self">See more courses</a>
                 </div>
             </div>
         </section>
@@ -75,24 +117,11 @@
         <div class="footer-logo">
             <a href="./index.html" target="_self"><img src="./img/logo.png" alt="logo"></a>
         </div>
-        <!--Enlaces-->
-        <div class="footer-enlaces">
-            <a href="https://www.instagram.com/singleplayerbyeufm/" target="_blank">
-            <img src="./img/iglogo.png" alt="IG Logo"></a>
-    
-            <a href="https://www.tiktok.com/@singleplayerbyeufm" target="_blank">
-            <img src="./img/tiktoklogo.png" alt="IG Logo"></a>
-    
-            <a href="https://www.youtube.com/channel/UCcnociiY6dCU0vArXFobC1g" target="_blank">
-            <img src="./img/ytlogo.png" alt="IG Logo"></a>
-                    
-            <a href="https://www.twitch.tv/eu_fm_" target="_blank">
-            <img src="./img/twitchlogo.png" alt="IG Logo"></a>
-                    
-            <a href="https://open.spotify.com/show/01YspW26eXbQIC2mSFy6Pj?si=c7882d9de974449a" target="_blank">
-            <img src="./img/spotifylogo.png" alt="IG Logo"></a>
-        </div>
     </footer>
-    <script src="javascript99.js"></script>
+    <!--Bootstrap & JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script src="teacherMode.js"></script>
+    <script src="javascript02.js"></script>
 </body>
 </html>

@@ -9,7 +9,11 @@
 header {
     grid-area: cabecera;
     display:grid;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
+}
+
+header .navbar{
+    padding: 10px 200px;
 }
 
 .header-logo {
@@ -25,7 +29,7 @@ header {
 
 .header-menu ul{
     display:grid;
-    grid-template-columns: 6fr 2fr 2fr 2fr 2fr 2fr 6fr;
+    grid-template-columns: 6fr 2fr 2fr 2fr 2fr 2fr 2fr 7fr;
     list-style: none;
     text-align: center;
     /*padding-top: 100px;*/
@@ -79,9 +83,12 @@ footer{
     grid-area:indexmain;
     display:grid;
     grid-template-areas:
-        "aside1 cursos aside2";
-    grid-template-columns: 1fr 6fr 1fr;
+        "dictionary"
+        "tools"
+        "courses";
+    /*grid-template-columns: auto;*/
     grid-template-rows: auto;
+    padding: 0px 200px;
 }
 
 #index h1 a{
@@ -94,54 +101,156 @@ footer{
     color: rgb(0, 0, 0);
 }
 
-#index p {
+#index p{
     line-height:20px;
     text-align: justify;
 }
 
-/*index-aside1*/
-.index-aside1 {
-    grid-area: aside1;
-}
-
-/*index-aside2*/
-.index-aside2{
-    grid-area: aside2;
-}
-
-/*index-cursos*/
-.index-cursos{
-    grid-area: cursos;
+/*index-dictionary*/
+.index-dictionary{
+    grid-area: dictionary;
     color: rgb(0, 0, 0);
-    display: grid;
-    grid-template-columns:1fr 8fr;
-    padding:25px;
+    padding:10px;
     border: 5px solid white;
 }
 
-.index.cursos.layout {
+.index-dictionary .container{
+    background-color: #ffffff;
+    width: 90vmin;
+    padding:80px 50px;
+    margin-bottom:25px;
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(38,33,61,0,2);
+}
+
+.index-dictionary .search-box {
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+}
+
+.index-dictionary .search-box input{
+    padding: 5px;
+    width:70%;
+    border: none;
+    outline: none;
+    border-bottom: 3px solid #e7dbc3;
+    font-size: 16px;
+    color:black;
+    }
+
+.index-dictionary .search-box button{
+    padding: 15px 0;
+    width: 25%;
+    background-color: #e7dbc3;
+    border:none;
+    outline:none;
+    color:#000000;
+    border-radius:5px;
+}
+
+.index-dictionary h3{
+    font-size: 30px;
+    color: black;
+}
+
+.index-dictionary .result .word{
+    justify-content: space-between;
+    margin-top: 80px;
+}
+
+.index-dictionary .result .details{
+    gap:10px;
+    color:grey;
+    margin: 5px 0 20px 0;
+    font-size:14px;
+}
+
+.index-dictionary .word-meaning{
+    color:rgb(48, 48, 48);
+}
+
+.index-dictionary .word-example {
+    color:(48, 48, 48);
+    font-style: italic;
+    border-left:5px solid #e7dbc3;
+    padding-left: 20px;
+    margin-top: 30px;
+}
+
+/*index-tools*/
+.index-tools{
+    grid-area: tools;
+    color: rgb(0, 0, 0);
+    padding:10px;
+    border: 5px solid white;
+}
+
+.index-tools textarea{
+    width:500px;
+    margin:0px 500px;
+}
+
+.index-tools #practica{
+    width:500px;
+    margin:0px 500px;
+}
+
+.index-tools button{
+    margin:5px 500px;
+}
+
+.index-tools button.acierto {
+    background-color: green;
+    color: white;
+}
+
+.index-tools #feedback{
+    color: red;
+}
+
+/*index-courses*/
+.index-courses{
+    grid-area: courses;
+    color: rgb(0, 0, 0);
+    display: grid;
+    grid-template-columns:1fr 8fr;
+    padding:10px;
+    border: 5px solid white;
+}
+
+.index-courses-layout {
     display:grid;
     grid-template-rows: auto auto;
 }
 
-.index-cursos-content{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+.index-courses-layout .filters form{
+    width: 300px;
+    margin: 20px 0px 0px 0px;
 }
 
-.index-cursos-content img{
-    width: 160px;
-    margin: 20px;
+.index-courses-layout .filters #selectOrder{
+    width: 300px;
+    margin: 10px 50px 10px 15px;}
+
+#index-courses-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+#index-courses-content img{
+    width: 300px;
+    margin: 10px;
     box-shadow: 3px 3px 10px gray;
     border-radius:10px;
 }
 
-.index-cursos-layout .vermas {
+.index-courses-layout .seemore {
     text-align: end;
     padding-right: 20px;
 }
 
-.index-cursos-layout .vermas a{
+.index-courses-layout .seemore a{
     padding-top: 20px;
     font-size: 18px;
     color: rgb(0, 0, 0);
