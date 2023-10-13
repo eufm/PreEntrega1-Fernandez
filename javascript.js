@@ -6,6 +6,18 @@ const btn = document.getElementById("search-btn");
 let vocabulario = [];
 let indiceActual = 0;
 
+function saveToLocalStorage() {
+    const jsonDic = JSON.stringify(dicOffline);
+    localStorage.setItem('dicOffline', jsonDic);
+}
+
+function loadFromLocalStorage() {
+    const jsonDic = localStorage.getItem('dicOffline');
+    if (jsonDic) {
+        dicOffline = JSON.parse(jsonDic);
+    }
+}
+
 class word{
     constructor(id, name, type, translation, phonetics, definition, example){
         this.id = id,
@@ -31,6 +43,30 @@ const word5 = new word(5, "Speak", "verb", "hablar", "/spi:k/", "To say words, t
 
 //array de objetos:
 let dicOffline = [word1,word2,word3,word4,word5]
+
+function saveWord(){
+    let name = document.getElementById ("wordInput").value;
+    let type = document.getElementById ("typeInput").value;
+    let translation = document.getElementById ("spanishInput").value;
+    let phonetics = document.getElementById ("phoneticsInput").value;
+    let definition = document.getElementById ("definitionInput").value;
+    let example = document.getElementById ("exampleInput").value;
+    //instanciarlo en un objeto:
+    const newWord = new word(dicOffline.length+1,name, type, translation, phonetics, definition, example);
+    dicOffline.push(newWord);
+    // Guardar en LocalStorage
+    saveToLocalStorage();
+    // Limpiar los campos del formulario
+    document.getElementById("wordInput").value = "";
+    document.getElementById("typeInput").value = "";
+    document.getElementById("spanishInput").value = "";
+    document.getElementById("phoneticsInput").value = "";
+    document.getElementById("definitionInput").value = "";
+    document.getElementById("exampleInput").value = "";
+}
+
+let saveWordBtn = document.getElementById("saveWordBtn")
+saveWordBtn.addEventListener ("click", () =>{saveWord(dicOffline)})
 
 //búsqueda
 function searchOfflineDictionary(inpWord) {
@@ -115,7 +151,6 @@ function iniciarPractica() {
 
 function mostrarSiguientePalabra() {
     if (indiceActual >= vocabulario.length) {
-        alert('¡Práctica terminada!');
         return;
     }
 
@@ -266,7 +301,6 @@ function calcularTotalConIVA(precio) {
 
 function pagar() {
     let totalCompra = carrito.reduce((total, curso) => total + calcularTotalConIVA(curso.precio), 0);
-    alert(`El total de tu compra es: ${totalCompra}`);
     carrito = [];
 }
 

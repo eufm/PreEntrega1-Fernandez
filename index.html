@@ -30,9 +30,6 @@
                         <button id="btnToggle" class="btn btn-success mx-3">Teacher</button>  
                     </ul>
                     <ul style="list-style: none;"className="navbar-nav me-auto">  
-                        <li className="nav-item " >
-                            <a id="botonCarrito" data-bs-toggle="modal" data-bs-target="#idModalCarrito" class="btn btn-secondary"><i class="fas fa-shopping-cart fa-1x"></i></a>
-                        </li>
                     </ul>
                 </div>
             </div> 
@@ -45,77 +42,117 @@
 
     <!--Contenido-->
     <main>
-        <!--Diccionario-->
-        <section class="index-dictionary">
+        <div id="teacherSection">
             <h2><a href="./pages/diccionario.html" target="_self">DICTIONARY</a></h2>
-            
-            <div class="container">
-                <div class="search-box">
-                    <input type="text"placeholder="Type the word here..." id="inp-word">
-                    <button onclick="search()" class="search-btn" id="search-btn">Search</button>
+            <p>Add words to our Learning Reference Dictionary!</p>
+            <!--Formulario-->
+            <form id="formSaveWord" class="my-4">
+                <div class="mb-3">
+                <label for="word" class="form-label">Word</label>
+                <input type="text" class="form-control" id="wordInput" aria-describedby="word">
                 </div>
 
-                <div id="result" class="result"></div>
-            </div>
-        </section>
-
-        <!--Tools-->
-        <section class="index-tools">
-            <h2><a href="./pages/tools.html" target="_self">TOOLS</a></h2>
-            <p>Ejemplo: happy - feliz</p>
-
-            <textarea id="vocabulario" rows="10" cols="50"></textarea>
-            <button onclick="iniciarPractica()">Practicar</button>
-    
-            <div id="practica" style="display:none;">
-                <h1 id="palabraActual"></h1>
-                <input type="text" id="traduccionInput">
-                <button onclick="verificarTraduccion()">Verificar</button>
-                <p id="feedback"></p>
-            </div>
-        </section>
-
-        <!--Courses-->
-        <section class="index-courses">
-            <h2><a href="./pages/courses.html" target="_self">COURSES</a></h2>
-            <div class="index-courses-layout">
-                <div class="filters">
-                    <form id=results class="d-flex mx-3">
-                        <input id="searcher"class="form-control me-2 " placeholder="Qué estas buscando?" aria-label="Search">
-                    </form>
-                    <select id="selectOrder" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected>Ordenar por:</option>
-                        <option value="1">Mayor a menor</option>
-                        <option value="2">Menor a mayor</option>
-                        <option value="3">Alfabeticamente</option>
-                    </select>
+                <div class="mb-3">
+                <label for="type" class="form-label">Type</label>
+                <input type="text" class="form-control" id="typeInput" aria-describedby="type">
                 </div>
-                <div id="index-courses-content">
 
+                <div class="mb-3">
+                <label for="spanish" class="form-label">Translation into Spanish</label>
+                <input type="text" class="form-control" id="spanishInput" aria-describedby="spanish">
                 </div>
-                <div class="seemore">
-                        <a href="./pages/esp_juegos.html" target="_self">See more courses</a>
+
+                <div class="mb-3">
+                <label for="phonetics" class="form-label">Phonetics</label>
+                <input type="text" class="form-control" id="phoneticsInput" aria-describedby="phonetics">
                 </div>
-            </div>
-        </section>
-        <!-- Modal-->
-    <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="modalCompraLabel">Detalles de la Compra</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="modalCompraBody">
-            <!-- detalles -->
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" onclick="pagar()">Pagar</button>
+
+                <div class="mb-3">
+                <label for="definition" class="form-label">Definition</label>
+                <input type="text" class="form-control" id="definitionInput" aria-describedby="definition">
+                </div>
+
+                <div class="mb-3">
+                <label for="example" class="form-label">Example</label>
+                <input type="text" class="form-control" id="exampleInput" aria-describedby="example">
+                </div>
+            </form>
+
+            <button type="text" id="saveWordBtn" class="btn btn-success" data-bs-dismiss="modal">Save word</button>
+        </div>
+
+        <div id="studentSection">
+            <!--Diccionario-->
+            <section class="index-dictionary">
+                <h2><a href="./pages/diccionario.html" target="_self">DICTIONARY</a></h2>
+                
+                <div class="container">
+                    <div class="search-box">
+                        <input type="text"placeholder="Type the word here..." id="inp-word">
+                        <button onclick="search()" class="search-btn" id="search-btn">Search</button>
+                    </div>
+
+                    <div id="result" class="result"></div>
+                </div>
+            </section>
+
+            <!--Tools-->
+            <section class="index-tools">
+                <h2><a href="./pages/tools.html" target="_self">TOOLS</a></h2>
+                <p>Ejemplo: happy - feliz</p>
+
+                <textarea id="vocabulario" rows="10" cols="50"></textarea>
+                <button onclick="iniciarPractica()">Practicar</button>
+        
+                <div id="practica" style="display:none;">
+                    <h1 id="palabraActual"></h1>
+                    <input type="text" id="traduccionInput">
+                    <button onclick="verificarTraduccion()">Verificar</button>
+                    <p id="feedback"></p>
+                </div>
+            </section>
+
+            <!--Courses-->
+            <section class="index-courses">
+                <h2><a href="./pages/courses.html" target="_self">COURSES</a></h2>
+                <div class="index-courses-layout">
+                    <div class="filters">
+                        <form id=results class="d-flex mx-3">
+                            <input id="searcher"class="form-control me-2 " placeholder="Qué estas buscando?" aria-label="Search">
+                        </form>
+                        <select id="selectOrder" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <option selected>Ordenar por:</option>
+                            <option value="1">Mayor a menor</option>
+                            <option value="2">Menor a mayor</option>
+                            <option value="3">Alfabeticamente</option>
+                        </select>
+                    </div>
+                    <div id="index-courses-content">
+
+                    </div>
+                    <div class="seemore">
+                            <a href="./pages/esp_juegos.html" target="_self">See more courses</a>
+                    </div>
+                </div>
+            </section>
+            <!-- Modal-->
+            <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalCompraLabel">Detalles de la Compra</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="modalCompraBody">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" onclick="pagar()">Pagar</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-    </div>
     </main>
 
     <!--Pie de página-->
