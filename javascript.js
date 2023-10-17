@@ -1,4 +1,4 @@
-        //dictionary
+        //DICTIONARY
 const url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 const result = document.getElementById("result");
 const btn = document.getElementById("search-btn");
@@ -51,11 +51,32 @@ function saveWord(){
     let phonetics = document.getElementById ("phoneticsInput").value;
     let definition = document.getElementById ("definitionInput").value;
     let example = document.getElementById ("exampleInput").value;
+
+    // Verificar campos:
+    if(!name || !type || !translation || !phonetics || !definition || !example) {
+        // Si incompleto:
+        Swal.fire({
+            icon: 'error',
+            title: '¡Error!',
+            text: 'Por favor, completa todos los campos antes de guardar.'
+        });
+        return; 
+    }
+
     //instanciarlo en un objeto:
     const newWord = new word(dicOffline.length+1,name, type, translation, phonetics, definition, example);
     dicOffline.push(newWord);
+
     // Guardar en LocalStorage
     saveToLocalStorage();
+
+    //Éxito
+    Swal.fire({
+        icon: 'success',
+        title: '¡Hecho!',
+        text: 'Palabra añadida con éxito al diccionario de Learning Reference.'
+    });
+
     // Limpiar los campos del formulario
     document.getElementById("wordInput").value = "";
     document.getElementById("typeInput").value = "";
@@ -136,8 +157,7 @@ inpWordElement.addEventListener('keydown', (e) => {
 
 btn.addEventListener("click", performSearch);
 
-
-//tools
+//TOOLS
 function iniciarPractica() {
     const entrada = document.getElementById('vocabulario').value;
     vocabulario = entrada.split('\n').map(item => {
@@ -215,8 +235,6 @@ let estanteria = [
     new course(6, "Better Call Saul", "Inglés", 55, "bettercallsaul.jpg")
 ];
 
-let carrito = [];
-
 //CAPTURA DOM
 let containerCourses = document.getElementById("index-courses-content");
 let selectOrder = document.getElementById("selectOrder");
@@ -233,23 +251,64 @@ function mostrarCatalogoDOM(array) {
             <p>${course.titulo}</p>
             <p>${course.idioma}</p>
             <p>Precio: ${course.precio}</p>
-            <button class="btn btn-outline-success agregar-carrito" data-id="${course.id}">Agregar al carrito</button>
+            <button class="btn btn-outline-success pagar-curso" data-id="${course.id}">Comprar curso</button>
         `;
         containerCourses.appendChild(courseNewdiv);
     }
 
-    let botonesAgregar = document.querySelectorAll(".agregar-carrito");
-    botonesAgregar.forEach(btn => {
+    let botonesPagar = document.querySelectorAll(".pagar-curso");
+    botonesPagar.forEach(btn => {
         btn.addEventListener("click", (e) => {
             const id = parseInt(e.target.getAttribute("data-id"));
             const cursoSeleccionado = estanteria.find(course => course.id === id);
-
-            agregarAlCarrito(cursoSeleccionado);
+    
             mostrarDetallesCompra(cursoSeleccionado);
+
         });
-    });
+    });    
 }
 
+function mostrarDetallesCompra(curso) {
+    let detallesHTML = `
+        <p>Curso: ${curso.titulo}</p>
+        <p>Idioma: ${curso.idioma}</p>
+        <p>Precio sin IVA: $${curso.precio}</p>
+        <p>IVA (21%): $${curso.precio * soloIVA}</p>
+        <p>Total: $${calcularTotalConIVA(curso.precio)}</p>
+    `;
+
+    modalCompraBody.innerHTML = detallesHTML;
+
+    document.getElementById('btnPagarDesdeModal').setAttribute('data-id', curso.id);
+
+
+    //Modal
+    let modalCompra = new bootstrap.Modal(document.getElementById('modalCompra'));
+    modalCompra.show();
+}
+
+function calcularTotalConIVA(precio) {
+    return precio * conIVA;
+}
+
+function pagar() {
+    const id = parseInt(document.getElementById('btnPagarDesdeModal').getAttribute("data-id"));
+    const cursoSeleccionado = estanteria.find(course => course.id === id);
+
+    Swal.fire({
+        icon: 'success',
+        title: '¡Pago realizado con éxito!',
+        text: 'Felicitaciones. Ya tienes tu curso disponible en tu perfil'
+    });
+
+    // Cerrar el modal:
+    let modalCompra = bootstrap.Modal.getInstance(document.getElementById('modalCompra'));
+    modalCompra.hide();
+}
+
+document.getElementById('btnPagarDesdeModal').addEventListener('click', pagar);
+
+//Filtro y ordenado
 function buscarInfo(buscado) {
     let results = estanteria.filter(course => course.titulo.toLowerCase().includes(buscado.toLowerCase()) || course.idioma.toLowerCase().includes(buscado.toLowerCase()));
     mostrarCatalogoDOM(results);
@@ -267,44 +326,6 @@ function ordenarAlfabeticamenteTitulo() {
     return [...estanteria].sort((a, b) => a.titulo.localeCompare(b.titulo));
 }
 
-function agregarAlCarrito(curso) {
-    let yaEnCarrito = carrito.find(item => item.id === curso.id);
-
-    if (!yaEnCarrito) {
-        carrito.push(curso);
-    } else {
-        console.log(`El curso ${curso.titulo} ya está en el carrito.`);
-    }
-
-    mostrarDetallesCompra(curso);
-}
-
-function mostrarDetallesCompra(curso) {
-    let detallesHTML = `
-        <p>Curso: ${curso.titulo}</p>
-        <p>Idioma: ${curso.idioma}</p>
-        <p>Precio sin IVA: $${curso.precio}</p>
-        <p>IVA (21%): $${curso.precio * soloIVA}</p>
-        <p>Total: $${calcularTotalConIVA(curso.precio)}</p>
-    `;
-
-    modalCompraBody.innerHTML = detallesHTML;
-
-    // Mostrar el modal
-    let modalCompra = new bootstrap.Modal(document.getElementById('modalCompra'));
-    modalCompra.show();
-}
-
-function calcularTotalConIVA(precio) {
-    return precio * conIVA;
-}
-
-function pagar() {
-    let totalCompra = carrito.reduce((total, curso) => total + calcularTotalConIVA(curso.precio), 0);
-    carrito = [];
-}
-
-//EVENTOS
 searcher.addEventListener("input", () => {
     buscarInfo(searcher.value);
 });

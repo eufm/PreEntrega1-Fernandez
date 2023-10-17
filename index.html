@@ -99,6 +99,7 @@
             <!--Tools-->
             <section class="index-tools">
                 <h2><a href="./pages/tools.html" target="_self">TOOLS</a></h2>
+                <p>Introduce, primero, lo que quieras que se muestre y, después, separado por " - " lo que quieres aprender.</p>
                 <p>Ejemplo: happy - feliz</p>
 
                 <textarea id="vocabulario" rows="10" cols="50"></textarea>
@@ -128,11 +129,6 @@
                         </select>
                     </div>
                     <div id="index-courses-content">
-
-                    </div>
-                    <div class="seemore">
-                            <a href="./pages/esp_juegos.html" target="_self">See more courses</a>
-                    </div>
                 </div>
             </section>
             <!-- Modal-->
@@ -147,7 +143,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary" onclick="pagar()">Pagar</button>
+                            <button type="button" class="btn btn-primary" id="btnPagarDesdeModal">Pagar</button>
                         </div>
                     </div>
                 </div>
@@ -165,6 +161,7 @@
     <!--Bootstrap & JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="teacherMode.js"></script>
     <script src="javascript.js"></script>
 </body>
